@@ -6,7 +6,7 @@ WORKDIR /src
 COPY ["src/dockerWebApi.csproj", "src/"]
 RUN dotnet restore "src/dockerWebApi.csproj"
 COPY . .
-WORKDIR "/src/src"
+WORKDIR /src/src
 RUN dotnet build "dockerWebApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
