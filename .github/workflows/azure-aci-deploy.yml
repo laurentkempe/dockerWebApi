@@ -1,4 +1,4 @@
-name: Azure Container Instances Continuous Deployment
+name: Azure Container Instances CD
 
 on: [registry_package]
 
