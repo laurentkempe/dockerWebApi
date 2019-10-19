@@ -1,4 +1,4 @@
-name: Azure Caontainer Instances Continuous Deployment
+name: Azure Container Instances Continuous Deployment
 
 on: [registry_package]
 
