@@ -4,8 +4,6 @@ on:
   registry_package:
     action:
       - updated
-    tags:
-      - latest
 
 jobs:
   deploy:
