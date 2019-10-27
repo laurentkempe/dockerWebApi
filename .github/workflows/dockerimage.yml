@@ -1,15 +1,25 @@
-name: Docker Image CI
-on: [push]
+name: Build Docker Image CI
+on: 
+  pull_request:
+    branches:
+    - master
+  push:
+    branches:
+    - master
+
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@master
-    - name: Publish to Registry
-      uses: jerray/publish-docker-action@master
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        registry: docker.pkg.github.com
-        repository: laurentkempe/dockerwebapi/dockerwebapi
-        auto_tag: true
+
+    - name: Build the Docker container image
+      run: docker build -t docker.pkg.github.com/laurentkempe/dockerwebapi/dockerwebapi:latest .
+
+    - name: Push the image to Github Packages Repository
+      run: |
+        docker login docker.pkg.github.com -u publisher -p "${GITHUB_PACKAGE_REGISTRY_TOKEN}"
+        docker push docker.pkg.github.com/laurentkempe/dockerwebapi/dockerwebapi:latest
+      env:
+        GITHUB_PACKAGE_REGISTRY_TOKEN: ${{ secrets.GITHUB_PACKAGE_REGISTRY_TOKEN }}
