@@ -11,7 +11,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - run: |
-        az container create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --name dockerwebapi --image docker.pkg.github.com/laurentkempe/dockerwebapi/dockerwebapi:latest --registry-username ${{ secrets.DOCKER_USERNAME }} --registry-password ${{ secrets.DOCKER_PASSWORD }} --dns-name-label dockerwebapi --ports 80
+        az container create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --name dockerwebapi --image docker.pkg.github.com/laurentkempe/dockerwebapi/dockerwebapi:latest --registry-login-server docker.pkg.github.com --registry-username ${{ secrets.DOCKER_USERNAME }} --registry-password ${{ secrets.DOCKER_PASSWORD }} --dns-name-label dockerwebapi --ports 80
  # Azure logout 
     - name: logout
       run: |
