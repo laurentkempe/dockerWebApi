@@ -31,7 +31,7 @@ namespace dockerWebApi.Controllers
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
-                Summary = "Laurent ROCK 4 " + Summaries[rng.Next(Summaries.Length)]
+                Summary = "Laurent ROCK 5 " + Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
         }
